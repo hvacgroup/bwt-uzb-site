@@ -8,9 +8,11 @@ import { useTranslations } from "next-intl";
 import RevealText from "./anim/RevealText";
 import Certifications from "@/app/components/Certifications";
 import SlimSceneMount from "@/app/components/three/SlimSceneMount";
+import StageClip from "@/app/components/three/StageClip";
 
-/* Phones never mount the filtration column, so the stage art is pulled in
-   separately — and only the stage the reader has actually reached animates. */
+/* Phones never mount the filtration column. They get the same stage clips
+   (StageClip, poster first, clip on reach); the vector stage art is only the
+   fallback for reduced motion or a clip that failed to load. */
 const StageArt = dynamic(() => import("@/app/components/three/StageArt"), {
   ssr: false,
 });
@@ -203,20 +205,27 @@ export default function Technology() {
                     {s.badge}
                   </span>
                 )}
-                {/* Mobile gets the same animated scene as the desktop panel —
-                    but only for the stage in view, so one SVG animates at a time.
-                    Stages further down hold their line icon until you reach them. */}
+                {/* Mobile gets the same stage clips as the desktop panel: the
+                    poster frame shows at once, the clip loads and plays only for
+                    the stage in view. Without video (reduced motion / load error)
+                    the active stage animates as SVG, the rest hold a line icon. */}
                 <div className="relative mt-9 aspect-square w-full max-w-[340px] overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.03] lg:hidden">
                   <div className="pointer-events-none absolute inset-8 rounded-full bg-bwt-gold/10 blur-2xl" />
-                  {active === i ? (
-                    <div className="absolute inset-3">
-                      <StageArt index={i} />
-                    </div>
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-bwt-gold/50">
-                      {STAGE_ICONS[i]}
-                    </div>
-                  )}
+                  <StageClip
+                    index={i}
+                    active={active === i}
+                    fallback={
+                      active === i ? (
+                        <div className="absolute inset-3">
+                          <StageArt index={i} />
+                        </div>
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-bwt-gold/50">
+                          {STAGE_ICONS[i]}
+                        </div>
+                      )
+                    }
+                  />
                 </div>
               </motion.div>
             ))}

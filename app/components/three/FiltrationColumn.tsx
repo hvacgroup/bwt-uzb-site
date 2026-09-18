@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { STAGE_ANIMATIONS, STAGE_VIDEO_OVERLAYS } from "./StageAnimations";
+import { STAGE_ANIMATIONS } from "./StageAnimations";
+import { STAGE_CLIPS } from "./StageClip";
+import StageHybrid from "./StageHybrid";
 
 /* Photoreal macro loops generated for each stage (public/videos/stages/).
    18.09.2026: all six re-shot as one series — a vertical filtration layer
@@ -11,15 +13,7 @@ import { STAGE_ANIMATIONS, STAGE_VIDEO_OVERLAYS } from "./StageAnimations";
    so every clip loops without a cut). 720×720, ~0.3–0.45 MB each.
    When a clip is missing or fails — or the user prefers reduced motion —
    the vector illustration takes over seamlessly. */
-const STAGE_VIDEOS: (string | null)[] = [
-  "/videos/stages/stage-1-mesh.mp4",
-  "/videos/stages/stage-2-carbon.mp4",
-  "/videos/stages/stage-3-resin.mp4",
-  // 04 — same composition as the mechanical stage, pathogens instead of grit.
-  "/videos/stages/stage-4-membrane.mp4",
-  "/videos/stages/stage-5-magnesium.mp4",
-  "/videos/stages/stage-6-glass.mp4",
-];
+const STAGE_VIDEOS: (string | null)[] = STAGE_CLIPS.map((n) => `/videos/stages/${n}.mp4`);
 
 /* ─────────────────────────────────────────────────────────────────────────
    The filtration column — an upgraded version of the original schematic.
@@ -54,7 +48,6 @@ export default function FiltrationColumn({
   const Illustration = STAGE_ANIMATIONS[i];
   const src = STAGE_VIDEOS[i];
   const useVideo = !reduced && !!src && !videoFailed.has(i);
-  const Overlay = STAGE_VIDEO_OVERLAYS[i];
   const progress = (active + 1) / stages.length;
 
   /* Only the visible clip runs; the others hold their first frame ready.
@@ -180,8 +173,14 @@ export default function FiltrationColumn({
           </div>
         )}
 
-        {/* didactic vector layer over the footage */}
-        {useVideo && Overlay && (
+        {/* blend the clip into the navy panel (under the labels) */}
+        {useVideo && (
+          <div className="pointer-events-none absolute inset-0 rounded-[2rem] shadow-[inset_0_0_60px_rgba(0,18,51,0.85)]" />
+        )}
+
+        {/* the hybrid code layer over the footage: legend, callout, caption,
+            drifting particles — the approved stage cards, 1:1 */}
+        {useVideo && (
           <AnimatePresence mode="wait">
             <motion.div
               key={`ov-${active}`}
@@ -189,20 +188,13 @@ export default function FiltrationColumn({
               animate={{ opacity: 1 }}
               exit={reduced ? undefined : { opacity: 0 }}
               transition={{ duration: reduced ? 0 : 0.35, ease: EASE }}
-              className="pointer-events-none absolute inset-0"
+              className="pointer-events-none absolute inset-0 overflow-hidden rounded-[2rem]"
             >
-              <Overlay />
+              <StageHybrid index={i} active />
             </motion.div>
           </AnimatePresence>
         )}
 
-        {/* blend the clip into the navy panel */}
-        {useVideo && (
-          <>
-            <div className="pointer-events-none absolute inset-0 rounded-[2rem] shadow-[inset_0_0_60px_rgba(0,18,51,0.85)]" />
-            <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-t from-bwt-navy/45 via-transparent to-bwt-navy/30" />
-          </>
-        )}
       </div>
     </div>
   );
