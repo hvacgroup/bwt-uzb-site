@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
+import { useFocusTrap } from "@/app/hooks/useFocusTrap";
 import { BRAND } from "@/lib/config";
 import { Menu, X, Phone } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -19,6 +20,10 @@ const NAV = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  /* The drawer used to leave the page behind it in the tab order and had no
+     Escape. Same hook the video dialogs use. */
+  const closeMenu = useCallback(() => setOpen(false), []);
+  const drawerRef = useFocusTrap(open, closeMenu);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const t = useTranslations("nav");
@@ -98,8 +103,10 @@ export default function Header() {
             </Magnetic>
             <button
               onClick={() => setOpen(true)}
-              className="rounded-btn p-2 text-bwt-ivory hover:bg-white/10 lg:hidden"
-              aria-label="Menu"
+              className="flex h-11 w-11 items-center justify-center rounded-btn text-bwt-ivory hover:bg-white/10 lg:hidden"
+              aria-label={t("openMenu")}
+              aria-expanded={open}
+              aria-controls="mobile-nav"
             >
               <Menu className="h-6 w-6" />
             </button>
@@ -117,15 +124,20 @@ export default function Header() {
           onClick={() => setOpen(false)}
         >
           <div
+            ref={drawerRef}
+            id="mobile-nav"
+            role="dialog"
+            aria-modal="true"
+            aria-label={t("menuLabel")}
             className="absolute bottom-0 right-0 top-0 flex w-72 max-w-[85vw] flex-col bg-bwt-navy shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-white/10 p-4">
               <LanguageSwitcher />
               <button
-                onClick={() => setOpen(false)}
-                className="rounded-btn p-2 text-bwt-ivory hover:bg-white/10"
-                aria-label="Close"
+                onClick={closeMenu}
+                className="flex h-11 w-11 items-center justify-center rounded-btn text-bwt-ivory hover:bg-white/10"
+                aria-label={t("closeMenu")}
               >
                 <X className="h-5 w-5" />
               </button>

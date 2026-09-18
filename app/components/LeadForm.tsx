@@ -98,7 +98,7 @@ export default function LeadForm({
   }
 
   const wrapperCls = compact ? "" : "bg-white rounded-2xl shadow-md p-6 sm:p-8";
-  const inp = "w-full border border-gray-300 rounded-lg px-3 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[color:var(--secondary)] bg-white";
+  const inp = "w-full border border-gray-300 rounded-lg px-3 py-3 text-base focus:ring-2 focus:ring-[color:var(--accent)] bg-white";
 
   return (
     <form onSubmit={submit} className={wrapperCls}>

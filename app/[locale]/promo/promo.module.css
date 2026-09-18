@@ -959,8 +959,14 @@
 }
 .formInput:focus,
 .formSelect:focus {
-  outline: none;
   border-color: var(--bwt-pink);
+}
+/* The border tint alone is a 1.5px cue in a colour that reads 2.37:1 on white —
+   keep it, but let the global focus ring do the actual signalling. */
+.formInput:focus-visible,
+.formSelect:focus-visible {
+  outline: 3px solid #b5175e;
+  outline-offset: 2px;
 }
 .formHint {
   font-size: 12px;

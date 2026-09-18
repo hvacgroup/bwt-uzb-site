@@ -38,7 +38,7 @@ export default function Installations() {
           viewport={VIEWPORT}
           className="max-w-[760px]"
         >
-          <p className="font-sans text-xs uppercase tracking-[0.25em] text-bwt-gold">
+          <p className="font-sans text-xs uppercase tracking-[0.25em] text-bwt-gold-ink">
             {t("eyebrow")}
           </p>
           <h2 className="mt-4 border-l-4 border-bwt-gold pl-5 font-serif text-3xl font-normal leading-[1.15] text-bwt-charcoal lg:text-4xl">

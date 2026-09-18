@@ -46,7 +46,7 @@ export default function Founder() {
           </motion.div>
 
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={VIEWPORT}>
-            <p className="font-sans text-xs uppercase tracking-[0.25em] text-bwt-gold">
+            <p className="font-sans text-xs uppercase tracking-[0.25em] text-bwt-gold-ink">
               {t("founder.eyebrow")}
             </p>
             <h2 className="mt-4 border-l-4 border-bwt-gold pl-5 font-serif text-3xl text-bwt-charcoal lg:text-4xl">

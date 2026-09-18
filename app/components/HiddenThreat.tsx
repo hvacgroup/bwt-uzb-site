@@ -39,7 +39,7 @@ export default function HiddenThreat() {
           initial="hidden"
           whileInView="show"
           viewport={VIEWPORT}
-          className="mb-6 font-sans text-xs font-medium uppercase tracking-[0.25em] text-bwt-gold"
+          className="mb-6 font-sans text-xs font-medium uppercase tracking-[0.25em] text-bwt-gold-ink"
         >
           {t("eyebrow")}
         </motion.p>
@@ -113,7 +113,7 @@ export default function HiddenThreat() {
               initial="hidden"
               whileInView="show"
               viewport={VIEWPORT}
-              className="mt-8 font-serif text-xl italic text-bwt-gold-dark"
+              className="mt-8 font-serif text-xl italic text-bwt-gold-ink"
             >
               {t("closer")}
             </motion.p>

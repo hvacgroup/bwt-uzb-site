@@ -13,6 +13,14 @@ export function altMeta(locale: string, path: string): Metadata["alternates"] {
   const uz = path === "/" ? "/uz" : `/uz${path}`;
   return {
     canonical: locale === "uz" ? uz : ru,
-    languages: { ru, uz },
+    /* x-default tells Google what to serve everyone the two tags don't cover.
+       Without it the choice for any other language/region is arbitrary. */
+    languages: {
+      ru,
+      "ru-UZ": ru,
+      uz,
+      "uz-UZ": uz,
+      "x-default": ru,
+    },
   };
 }

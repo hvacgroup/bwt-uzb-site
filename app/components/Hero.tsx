@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, type Variants } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion, type Variants } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
@@ -49,9 +49,12 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  /* Scroll-linked parallax is not covered by MotionConfig — useTransform maps
+     values directly, so the ranges have to collapse by hand. */
+  const reduced = useReducedMotion();
+  const contentY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, 120]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.6], reduced ? [1, 1] : [1, 0]);
+  const bgY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, 200]);
 
   return (
     <section

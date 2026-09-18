@@ -85,7 +85,7 @@ export default function Lineup() {
           initial="hidden"
           whileInView="show"
           viewport={VIEWPORT}
-          className="mb-6 font-sans text-xs font-medium uppercase tracking-[0.25em] text-bwt-gold"
+          className="mb-6 font-sans text-xs font-medium uppercase tracking-[0.25em] text-bwt-gold-ink"
         >
           {t("eyebrow")}
         </motion.p>
@@ -141,7 +141,7 @@ export default function Lineup() {
               <ul className="mt-6 flex-1 space-y-3">
                 {tiersText[i].features.map((f) => (
                   <li key={f} className="flex items-start gap-3 font-sans text-sm text-bwt-charcoal">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-bwt-gold" strokeWidth={2.5} />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-bwt-gold-ink" strokeWidth={2.5} />
                     {f}
                   </li>
                 ))}
@@ -151,7 +151,7 @@ export default function Lineup() {
                 className={`mt-8 inline-flex items-center justify-center gap-2 rounded-btn px-6 py-3.5 font-sans text-sm font-semibold uppercase tracking-wider transition-colors ${
                   tier.popular
                     ? "bg-bwt-gold text-bwt-navy-dark hover:bg-bwt-gold-light"
-                    : "border border-bwt-charcoal/20 text-bwt-charcoal hover:border-bwt-gold hover:text-bwt-gold-dark"
+                    : "border border-bwt-charcoal/20 text-bwt-charcoal hover:border-bwt-gold hover:text-bwt-gold-ink"
                 }`}
               >
                 {t("learnPrice")}
@@ -183,7 +183,7 @@ export default function Lineup() {
                   exit={{ x: -40, opacity: 0 }}
                   transition={{ duration: 0.35, ease: EASE }}
                 >
-                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-bwt-gold">
+                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-bwt-gold-ink">
                     {t("stepOf", { step: step + 1, total: TOTAL })}
                   </p>
                   <h4 className="mt-3 font-serif text-2xl text-bwt-charcoal">{steps[step].q}</h4>
@@ -195,7 +195,7 @@ export default function Lineup() {
                         className="flex w-full items-center justify-between rounded-btn border border-bwt-silver/70 px-5 py-4 text-left font-sans text-base text-bwt-charcoal transition-colors hover:border-bwt-gold hover:bg-bwt-cream"
                       >
                         {opt}
-                        <ChevronRight className="h-4 w-4 shrink-0 text-bwt-gold" />
+                        <ChevronRight className="h-4 w-4 shrink-0 text-bwt-gold-ink" />
                       </button>
                     ))}
                   </div>
@@ -216,7 +216,7 @@ export default function Lineup() {
                   exit={{ x: -40, opacity: 0 }}
                   transition={{ duration: 0.35, ease: EASE }}
                 >
-                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-bwt-gold">
+                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-bwt-gold-ink">
                     {t("stepOf", { step: 3, total: TOTAL })}
                   </p>
                   <h4 className="mt-3 font-serif text-2xl text-bwt-charcoal">{t("needsTitle")}</h4>
@@ -272,7 +272,7 @@ export default function Lineup() {
                   transition={{ duration: 0.4, ease: EASE }}
                   className="text-center"
                 >
-                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-bwt-gold">
+                  <p className="font-sans text-xs uppercase tracking-[0.2em] text-bwt-gold-ink">
                     {t("resultEyebrow")}
                   </p>
                   <h4 className="mt-3 font-serif text-4xl text-bwt-charcoal">
@@ -304,7 +304,7 @@ export default function Lineup() {
                           <Link
                             key={TIERS_META[i].id}
                             href={`/request?model=${TIERS_META[i].id}`}
-                            className="rounded-btn border border-bwt-silver/70 px-4 py-2 font-sans text-sm text-bwt-charcoal transition-colors hover:border-bwt-gold hover:text-bwt-gold-dark"
+                            className="rounded-btn border border-bwt-silver/70 px-4 py-2 font-sans text-sm text-bwt-charcoal transition-colors hover:border-bwt-gold hover:text-bwt-gold-ink"
                           >
                             {TIERS_META[i].name} · {tiersText[i].tagline}
                           </Link>

@@ -46,7 +46,7 @@ export default function Lifestyle() {
           initial="hidden"
           whileInView="show"
           viewport={VIEWPORT}
-          className="mb-6 font-sans text-xs font-medium uppercase tracking-[0.25em] text-bwt-gold"
+          className="mb-6 font-sans text-xs font-medium uppercase tracking-[0.25em] text-bwt-gold-ink"
         >
           {t("eyebrow")}
         </motion.p>

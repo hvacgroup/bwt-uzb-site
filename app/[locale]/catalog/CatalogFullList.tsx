@@ -93,7 +93,7 @@ export default function CatalogFullList({ products }: { products: PublicProduct[
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder={s.searchPlaceholder}
-                    className="w-full rounded-btn border border-bwt-silver/70 bg-white py-3.5 pl-12 pr-4 font-sans text-base text-bwt-charcoal focus:border-bwt-gold focus:outline-none"
+                    className="w-full rounded-btn border border-bwt-silver/70 bg-white py-3.5 pl-12 pr-4 font-sans text-base text-bwt-charcoal focus:border-bwt-gold-ink"
                   />
                 </div>
 

@@ -11,9 +11,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "contactsPage.meta" });
   return {
-    title: "Контакты · BWT Uzbekistan",
-    description: "Телефон, Telegram, WhatsApp, Instagram, email и адрес офиса BWT в Ташкенте.",
+    title: t("title"),
+    description: t("description"),
     alternates: altMeta(locale, "/contacts"),
   };
 }

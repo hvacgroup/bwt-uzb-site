@@ -11,10 +11,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "requestPage.meta" });
   return {
-    title: "Бесплатный анализ воды · BWT Uzbekistan",
-    description:
-      "Закажите бесплатный анализ воды на дому. Привезём, заберём, пришлём результаты в Telegram за 24 часа.",
+    title: t("title"),
+    description: t("description"),
     alternates: altMeta(locale, "/request"),
   };
 }

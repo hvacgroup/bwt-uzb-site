@@ -58,7 +58,7 @@ export default function PremiumResidences() {
           initial="hidden"
           whileInView="show"
           viewport={VIEWPORT}
-          className="font-sans text-xs font-medium uppercase tracking-[0.25em] text-bwt-gold"
+          className="font-sans text-xs font-medium uppercase tracking-[0.25em] text-bwt-gold-ink"
         >
           {t("eyebrow")}
         </motion.p>
@@ -71,7 +71,7 @@ export default function PremiumResidences() {
           className="mt-5 border-l-4 border-bwt-gold pl-5 max-w-[14ch] font-sans text-4xl font-extrabold leading-[1.05] tracking-tight text-bwt-charcoal lg:text-6xl"
         >
           {t("titleA")}{" "}
-          <span className="font-serif text-[1.05em] font-medium italic text-bwt-gold">
+          <span className="font-serif text-[1.05em] font-medium italic text-bwt-gold-ink">
             {t("titleAccent")}
           </span>
         </motion.h2>
@@ -102,7 +102,7 @@ export default function PremiumResidences() {
             >
               <div className="font-sans text-5xl font-extrabold leading-none tracking-tight text-bwt-charcoal lg:text-6xl">
                 <CountUp value={s.num} />
-                <span className="text-2xl font-bold text-bwt-gold lg:text-3xl">{s.unit}</span>
+                <span className="text-2xl font-bold text-bwt-gold-ink lg:text-3xl">{s.unit}</span>
               </div>
               <div className="mt-3 font-sans text-sm leading-snug text-bwt-graphite">
                 {s.label}
@@ -122,7 +122,7 @@ export default function PremiumResidences() {
           <h3 className="font-sans text-2xl font-bold tracking-tight text-bwt-charcoal lg:text-3xl">
             {t("objectsTitle")}
           </h3>
-          <span className="font-mono text-xs uppercase tracking-[0.2em] text-bwt-gold">
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-bwt-gold-ink">
             {t("objectsMeta")}
           </span>
         </motion.div>

@@ -1,14 +1,24 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { altMeta } from "@/lib/seo";
 import { fetchProducts } from "@/lib/api";
 import CatalogClient from "./CatalogClient";
 
 export const revalidate = 300;
 
-export const metadata = {
-  title: "Каталог BWT · BWT Uzbekistan",
-  description:
-    "Питьевые системы под мойку BWT Slim и фильтрация для всего дома в Узбекистане. Установка, сервис, гарантия.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "catalogPage.meta" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: altMeta(locale, "/catalog"),
+  };
+}
 
 export default async function CatalogPage({
   params,

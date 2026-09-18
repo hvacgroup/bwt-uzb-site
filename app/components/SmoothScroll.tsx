@@ -9,6 +9,11 @@ import Lenis from "lenis";
  */
 export default function SmoothScroll() {
   useEffect(() => {
+    /* Inertial scroll is the single most nauseating thing on the page for
+       someone with vestibular sensitivity — it keeps moving after the finger
+       has stopped. Leave native scrolling alone when they've asked for less. */
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const lenis = new Lenis({
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

@@ -15,10 +15,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "about.meta" });
   return {
-    title: "О компании · BWT Uzbekistan",
-    description:
-      "BWT — немецкая инженерия воды с 1990 года, более 90 стран. Официальный дистрибьютор в Узбекистане.",
+    title: t("title"),
+    description: t("description"),
     alternates: altMeta(locale, "/about"),
   };
 }

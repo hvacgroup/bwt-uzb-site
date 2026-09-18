@@ -20,10 +20,10 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "servicesPage.meta" });
   return {
-    title: "Сервис · BWT Uzbekistan",
-    description:
-      "Установка за 90 минут, обслуживание, гарантия 3 года и поддержка по всему Узбекистану.",
+    title: t("title"),
+    description: t("description"),
     alternates: altMeta(locale, "/services"),
   };
 }

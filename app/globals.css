@@ -18,6 +18,10 @@
   --color-bwt-gold: #f087b6;
   --color-bwt-gold-light: #f5a9c8;
   --color-bwt-gold-dark: #c4527f;
+  /* Same hue (H333), dark enough to read as TEXT on white and on #f0f1f4:
+     6.46:1 and 5.72:1. The bright #f087b6 only manages 2.37:1 there, so it
+     belongs on navy and on fills — never on small type over a light surface. */
+  --color-bwt-gold-ink: #b5175e;
 
   --color-bwt-aqua: #6ea8e8;
   --color-bwt-aqua-soft: #cfe0f5;
@@ -58,7 +62,7 @@
 :root {
   --primary: #001d46;
   --primary-dark: #001233;
-  --secondary: #f087b6;
+  --secondary: #b5175e; /* text-safe pink for the legacy light pages */
   --accent: #c4527f;
   --bg: #f5f6f8;
   --surface: #ffffff;
@@ -230,6 +234,45 @@ html.lenis body {
 }
 .hero-cta-pulse {
   animation: hero-cta-pulse 3.4s ease-in-out infinite;
+}
+
+/* ── Focus ────────────────────────────────────────────────────────────────
+   One visible ring everywhere. Components used to drop the native outline and
+   redraw it in #f087b6, which is 2.37:1 on white — a focus ring you cannot see
+   is the same as no focus ring at all.
+   ───────────────────────────────────────────────────────────────────────── */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-bwt-gold-ink);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+/* On the navy blocks the bright pink is the readable one (7:1). */
+.bg-bwt-navy :where(a, button, input, select, textarea, [tabindex]):focus-visible,
+.bg-bwt-navy-dark :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline-color: var(--color-bwt-gold);
+}
+
+/* Skip link — visually hidden until it takes focus. Without it the keyboard
+   path to the content is ten tabs through the header on every page. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 300;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--radius-btn);
+  background: var(--color-bwt-gold);
+  color: var(--color-bwt-navy-dark);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  box-shadow: var(--shadow-card);
 }
 
 @media (prefers-reduced-motion: reduce) {

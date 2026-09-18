@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Play, X, ArrowRight } from "lucide-react";
 import RevealText from "./anim/RevealText";
+import { useFocusTrap } from "@/app/hooks/useFocusTrap";
 
 type Review = { id: string; name: string; role: string; caption: string; short: boolean };
 
@@ -38,20 +39,8 @@ export default function Reviews() {
   const [active, setActive] = useState<string | null>(null);
 
   const close = useCallback(() => setActive(null), []);
-
-  useEffect(() => {
-    if (!active) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-    };
-    document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [active, close]);
+  /* Escape, the scroll lock and the focus cycle all live in the hook now. */
+  const dialogRef = useFocusTrap(Boolean(active), close);
 
   return (
     <section className="bg-bwt-cream py-20 lg:py-28">
@@ -63,12 +52,12 @@ export default function Reviews() {
           viewport={VIEWPORT}
           className="max-w-[760px]"
         >
-          <p className="font-sans text-xs font-medium uppercase tracking-[0.25em] text-bwt-gold">
+          <p className="font-sans text-xs font-medium uppercase tracking-[0.25em] text-bwt-gold-ink">
             {t("reviews.eyebrow")}
           </p>
           <h2 className="mt-4 border-l-4 border-bwt-gold pl-5 font-serif text-3xl font-normal leading-[1.15] text-bwt-charcoal lg:text-4xl">
             <RevealText text={t("reviews.titleA")} />{" "}
-            <span className="italic text-bwt-gold-dark">
+            <span className="italic text-bwt-gold-ink">
               <RevealText text={t("reviews.titleAccent")} delay={0.12} />
             </span>{" "}
             <RevealText text={t("reviews.titleB")} delay={0.2} />
@@ -132,7 +121,7 @@ export default function Reviews() {
 
               <div className="flex flex-1 flex-col p-5">
                 <div className="font-serif text-lg text-bwt-charcoal">{r.name}</div>
-                <div className="mt-1 font-sans text-[0.7rem] uppercase tracking-wider text-bwt-gold-dark">
+                <div className="mt-1 font-sans text-[0.7rem] uppercase tracking-wider text-bwt-gold-ink">
                   {r.role}
                 </div>
                 <p className="mt-3 flex-1 font-sans text-sm leading-relaxed text-bwt-graphite">
@@ -141,7 +130,7 @@ export default function Reviews() {
                 <button
                   type="button"
                   onClick={() => setActive(r.id)}
-                  className="mt-5 inline-flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wider text-bwt-charcoal transition-colors hover:text-bwt-gold-dark"
+                  className="-mx-2 mt-4 inline-flex min-h-[44px] items-center gap-2 px-2 font-sans text-sm font-semibold uppercase tracking-wider text-bwt-charcoal transition-colors hover:text-bwt-gold-ink"
                 >
                   {t("reviews.watch")} <ArrowRight className="h-4 w-4" />
                 </button>
@@ -155,10 +144,14 @@ export default function Reviews() {
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-bwt-navy-dark/90 p-4"
           onClick={close}
-          role="dialog"
-          aria-modal="true"
         >
           <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${t("reviews.dialogLabel")} — ${
+              reviews.find((r) => r.id === active)?.name ?? ""
+            }`}
             className="relative w-full max-w-[900px]"
             onClick={(e) => e.stopPropagation()}
           >
@@ -166,14 +159,14 @@ export default function Reviews() {
               type="button"
               onClick={close}
               aria-label={t("reviews.close")}
-              className="absolute -top-11 right-0 flex h-9 w-9 items-center justify-center rounded-full border border-bwt-ivory/30 text-bwt-ivory transition-colors hover:border-bwt-gold hover:text-bwt-gold"
+              className="absolute -top-14 right-0 flex h-11 w-11 items-center justify-center rounded-full border border-bwt-ivory/30 text-bwt-ivory transition-colors hover:border-bwt-gold hover:text-bwt-gold"
             >
               <X className="h-5 w-5" />
             </button>
             <div className="relative aspect-video w-full overflow-hidden rounded-card bg-black">
               <iframe
                 src={YT_EMBED(active)}
-                title="YouTube review"
+                title={`${t("reviews.dialogLabel")} — ${reviews.find((r) => r.id === active)?.name ?? ""}`}
                 allow="autoplay; encrypted-media; picture-in-picture"
                 allowFullScreen
                 loading="lazy"

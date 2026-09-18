@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { useTranslations } from "next-intl";
 import RevealText from "./anim/RevealText";
 import CountUp from "./anim/CountUp";
+import { useFocusTrap } from "@/app/hooks/useFocusTrap";
 import { ArrowUpRight, Play, X } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -49,19 +50,7 @@ export default function ChangeTheWorld() {
   const [active, setActive] = useState<string | null>(null);
 
   const close = useCallback(() => setActive(null), []);
-  useEffect(() => {
-    if (!active) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-    };
-    document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [active, close]);
+  const dialogRef = useFocusTrap(Boolean(active), close);
 
   return (
     <section className="bg-bwt-navy py-20 text-bwt-ivory lg:py-32">
@@ -201,15 +190,20 @@ export default function ChangeTheWorld() {
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-bwt-navy-dark/92 p-4"
           onClick={close}
-          role="dialog"
-          aria-modal="true"
         >
-          <div className="relative w-full max-w-[1000px]" onClick={(e) => e.stopPropagation()}>
+          <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t("dialogLabel")}
+            className="relative w-full max-w-[1000px]"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               type="button"
               onClick={close}
-              aria-label="Close"
-              className="absolute -top-11 right-0 flex h-9 w-9 items-center justify-center rounded-full border border-bwt-ivory/30 text-bwt-ivory transition-colors hover:border-bwt-gold hover:text-bwt-gold"
+              aria-label={t("close")}
+              className="absolute -top-14 right-0 flex h-11 w-11 items-center justify-center rounded-full border border-bwt-ivory/30 text-bwt-ivory transition-colors hover:border-bwt-gold hover:text-bwt-gold"
             >
               <X className="h-5 w-5" />
             </button>
@@ -219,6 +213,7 @@ export default function ChangeTheWorld() {
               controls
               autoPlay
               playsInline
+              preload="none"
               className="mx-auto max-h-[85vh] w-auto max-w-full rounded-card bg-black"
             />
           </div>

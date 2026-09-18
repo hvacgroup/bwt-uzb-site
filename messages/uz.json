@@ -28,7 +28,9 @@
     ],
     "linkProject": "AQUA pearls loyihasi haqida",
     "linkMonitor": "Quduqlarni onlayn kuzatish",
-    "brandLine": "BWT — For You and Planet Blue"
+    "brandLine": "BWT — For You and Planet Blue",
+    "dialogLabel": "BWT missiyasi haqida video",
+    "close": "Yopish"
   },
   "installations": {
     "eyebrow": "Haqiqiy o'rnatishlar",
@@ -41,7 +43,10 @@
     "services": "Xizmatlar",
     "about": "Biz haqimizda",
     "contacts": "Aloqa",
-    "request": "Ariza"
+    "request": "Ariza",
+    "menuLabel": "Menyu",
+    "openMenu": "Menyuni ochish",
+    "closeMenu": "Menyuni yopish"
   },
   "hero": {
     "eyebrow": "Best Water Technology",
@@ -194,7 +199,7 @@
   },
   "lifestyle": {
     "eyebrow": "Kundalik o'zgarishlar",
-    "title": "Bir kunlik o'rnatish. Umrlik o'zgarish.",
+    "title": "Bir yarim soatlik o'rnatish. Umrlik o'zgarish.",
     "cards": [
       {
         "title": "Ertalab",
@@ -299,7 +304,7 @@
   },
   "service": {
     "eyebrow": "Servis",
-    "title": "Bir marta sotib olasiz — o'n yil tashvishlanmaysiz",
+    "title": "Bir marta sotib olasiz — qolganini biz qilamiz",
     "items": [
       {
         "title": "O'rnatish",
@@ -432,10 +437,15 @@
       "Qo'ng'iroq"
     ],
     "submit": "Bepul tahlilni olish",
-    "reassurance": "Sotuv uchun qo'ng'iroqlar yo'q. Faqat tahlil natijalari.",
+    "reassurance": "Raqamingizni uchinchi shaxslarga bermaymiz. Faqat arizangiz bo'yicha qo'ng'iroq qilamiz.",
     "successTitle": "Ariza qabul qilindi",
     "successText": "Bir soat ichida bog'lanamiz va tashrif vaqtini kelishamiz.",
-    "error": "Ism va telefonni kiriting"
+    "error": "Ism va telefonni kiriting",
+    "nameLabel": "Ismingiz",
+    "phoneLabel": "Telefon",
+    "methodLabel": "Qanday bog'lanish qulay",
+    "sending": "Yuborilmoqda…",
+    "errorNetwork": "Arizani yuborib bo'lmadi. Bizga qo'ng'iroq qiling — darhol javob beramiz."
   },
   "buttons": {
     "selectSystem": "Tizimni tanlash",
@@ -457,7 +467,11 @@
     "all": "Barchasi",
     "notFound": "Hech narsa topilmadi. Filtrlarni tozalang.",
     "priceFrom": "Narxi",
-    "details": "Batafsil"
+    "details": "Batafsil",
+    "meta": {
+      "title": "BWT suv filtrlari katalogi — Toshkentda narxlar",
+      "description": "Rakovina ostidagi BWT Slim 2, Slim 3, Slim 4 ichimlik tizimlari va butun uy uchun filtratsiya. Yumshatgichlar, magistral filtrlar, kartrijlar."
+    }
   },
   "productPage": {
     "back": "Katalogga",
@@ -551,7 +565,11 @@
     "missionBrandLine": "Change the World — sip by sip.",
     "ctaTitle": "Toza suv olishga tayyormisiz?",
     "ctaPrimary": "Bepul suv tahlili",
-    "ctaSecondary": "Katalogni o'rganish"
+    "ctaSecondary": "Katalogni o'rganish",
+    "meta": {
+      "title": "BWT kompaniyasi — Germaniya suv muhandisligi",
+      "description": "BWT — Germaniyadan suv texnologiyalari, 90 dan ortiq mamlakat. 2016 yildan O'zbekistonda rasmiy distribyutor: filtrlar, yumshatgichlar, servis."
+    }
   },
   "servicesPage": {
     "heroEyebrow": "Servis",
@@ -601,7 +619,11 @@
       "O'rnatishdan oldin suv tahlili"
     ],
     "ctaTitle": "Uyingiz uchun narxni bilib oling",
-    "ctaButton": "Ariza qoldirish"
+    "ctaButton": "Ariza qoldirish",
+    "meta": {
+      "title": "O'zbekistonda BWT filtrlarini o'rnatish va servis",
+      "description": "BWT ichimlik tizimlarini 90 daqiqada o'rnatish, kartrij almashtirish, 3 yil kafolat. Toshkent va viloyatlarga chiqish, sertifikatlangan brigada."
+    }
   },
   "contactsPage": {
     "heroEyebrow": "Aloqa",
@@ -627,7 +649,16 @@
     "formSuccessText": "Bir soat ichida bog'lanamiz.",
     "formError": "Ism va telefonni kiriting",
     "mapYandex": "Yandex xaritalarida ochish",
-    "mapGoogle": "Google Maps'da ochish"
+    "mapGoogle": "Google Maps'da ochish",
+    "meta": {
+      "title": "BWT Uzbekistan aloqa — Toshkent, Yunusobod",
+      "description": "O'zbekistondagi BWT rasmiy distribyutorining manzili, telefoni va ish vaqti. Toshkent, Yunusobod tumani, Xushnavo ko'chasi."
+    },
+    "nameLabel": "Ismingiz",
+    "phoneLabel": "Telefon",
+    "messageLabel": "Xabar",
+    "sending": "Yuborilmoqda…",
+    "errorNetwork": "Arizani yuborib bo'lmadi. Bizga qo'ng'iroq qiling — darhol javob beramiz."
   },
   "requestPage": {
     "heroEyebrow": "Ariza",
@@ -686,14 +717,24 @@
       "Navoiy",
       "Urganch",
       "Boshqa hudud"
-    ]
+    ],
+    "meta": {
+      "title": "Toshkentda bepul suv tahlili",
+      "description": "Bepul laboratoriya suv tahlili va uyingizga mos BWT filtrini tanlash. 90 daqiqada o'rnatish, 3 yil kafolat."
+    },
+    "nameLabel": "Ismingiz",
+    "phoneLabel": "Telefon",
+    "regionLabel": "Viloyat",
+    "methodLabel": "Qanday bog'lanish qulay",
+    "sending": "Yuborilmoqda…",
+    "errorNetwork": "Arizani yuborib bo'lmadi. Bizga qo'ng'iroq qiling — darhol javob beramiz."
   },
   "promo": {
     "meta": {
       "title": "BWT Uzbekistan — kraningizdan premium suv. 24 soatda bepul tahlil.",
       "description": "Kraningizdagi suv darajangizni premium-mineral suvga aylantiring: BWT patentlangan magniy texnologiyasi, bir kunda o'rnatish, 3 yil kafolat. Uy va biznes-klass uy-joy majmualari uchun 24 soatda bepul laboratoriya tahlili.",
       "ogTitle": "BWT Uzbekistan — kraningizdan premium suv",
-      "ogDescription": "BWT patentlangan magniy, 1 kunda o'rnatish, 3 yil kafolat. 24 soatda bepul suv tahlili."
+      "ogDescription": "BWT patentlangan magniy, 90 daqiqada o'rnatish, 3 yil kafolat. 24 soatda bepul suv tahlili."
     },
     "offer": {
       "eyebrow": "Suv tahlili · Bepul",
@@ -846,7 +887,8 @@
           "caption": "BWT suv filtrlari va sifatli suvning shahar hamda uy uchun ahamiyati haqida.",
           "short": false
         }
-      ]
+      ],
+      "dialogLabel": "Video sharh"
     },
     "founder": {
       "eyebrow": "Bu ortida kim turibdi",
@@ -855,6 +897,14 @@
       "bio": "Isitish, ventilyatsiya, suv ta'minoti va kanalizatsiya tizimlari muhandisi. Sohada 10 yildan ortiq tajriba, 200 dan ortiq amalga oshirilgan loyihalar. Har bir o'rnatish va servis chiqishini shaxsan nazorat qiladi.",
       "quote": "Suv sifati — hayot sifati.",
       "imageAlt": "Ziyodullo Abdukakharov — Teplovik asoschisi, O'zbekistondagi BWT distribyutori"
+    }
+  },
+  "home": {
+    "meta": {
+      "title": "Toshkentda BWT suv filtrlari — o'rnatish bilan",
+      "description": "O'zbekistonda BWT rasmiy distribyutori. Rakovina ostidagi filtrlar, yumshatgichlar, teskari osmos. 90 daqiqada o'rnatish, 3 yil kafolat, bepul suv tahlili.",
+      "ogTitle": "BWT Uzbekistan — uyingiz uchun toza suv",
+      "ogDescription": "Germaniya BWT filtrlari. 90 daqiqada o'rnatish. 3 yil kafolat."
     }
   }
 }

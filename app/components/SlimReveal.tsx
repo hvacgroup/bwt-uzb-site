@@ -45,7 +45,7 @@ export default function SlimReveal() {
           initial="hidden"
           whileInView="show"
           viewport={VIEWPORT}
-          className="mb-6 font-sans text-xs font-medium uppercase tracking-[0.25em] text-bwt-gold"
+          className="mb-6 font-sans text-xs font-medium uppercase tracking-[0.25em] text-bwt-gold-ink"
         >
           {t("eyebrow")}
         </motion.p>
@@ -100,7 +100,7 @@ export default function SlimReveal() {
                   />
                 )}
                 <div className="flex items-baseline gap-3">
-                  <span className="font-serif text-5xl text-bwt-gold lg:text-6xl"><CountUp value={f.stat} /></span>
+                  <span className="font-serif text-5xl text-bwt-gold-ink lg:text-6xl"><CountUp value={f.stat} /></span>
                   <span className="font-sans text-sm uppercase tracking-wider text-bwt-graphite">
                     {f.unit}
                   </span>
@@ -122,7 +122,7 @@ export default function SlimReveal() {
           <p className="font-sans text-xl leading-relaxed text-bwt-charcoal">{t("body")}</p>
           <a
             href="#technology"
-            className="group mt-8 inline-flex items-center gap-2.5 font-sans text-sm font-semibold uppercase tracking-wider text-bwt-charcoal transition-colors hover:text-bwt-gold-dark"
+            className="group mt-8 inline-flex items-center gap-2.5 font-sans text-sm font-semibold uppercase tracking-wider text-bwt-charcoal transition-colors hover:text-bwt-gold-ink"
           >
             {t("cta")}
             <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-1" />

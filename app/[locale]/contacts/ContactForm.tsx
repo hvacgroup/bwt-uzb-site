@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { ERP_API } from "@/lib/config";
@@ -41,20 +41,36 @@ export default function ContactForm() {
       }
       setDone(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : String(err));
+      console.error("contact submit failed", err);
+      setError(t("errorNetwork"));
     } finally {
       setSending(false);
     }
   };
 
+  const successRef = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (done) successRef.current?.focus();
+  }, [done]);
+
   const inputCls =
-    "w-full border-b border-bwt-ivory/30 bg-transparent py-3 font-sans text-base text-bwt-ivory placeholder:text-bwt-ivory/40 focus:border-bwt-gold focus:outline-none transition-colors";
+    "w-full border-b border-bwt-ivory/30 bg-transparent py-3 font-sans text-base text-bwt-ivory placeholder:text-bwt-ivory/40 focus:border-bwt-gold transition-colors";
 
   if (done) {
     return (
-      <div className="rounded-card border border-bwt-gold/30 bg-white/[0.04] p-8 text-center">
+      <div
+        className="rounded-card border border-bwt-gold/30 bg-white/[0.04] p-8 text-center"
+        role="status"
+        aria-live="polite"
+      >
         <CheckCircle2 className="mx-auto h-12 w-12 text-bwt-gold" strokeWidth={1.5} />
-        <h3 className="mt-4 font-serif text-xl text-bwt-ivory">{t("formSuccessTitle")}</h3>
+        <h3
+          ref={successRef}
+          tabIndex={-1}
+          className="mt-4 font-serif text-xl text-bwt-ivory focus-visible:outline-none"
+        >
+          {t("formSuccessTitle")}
+        </h3>
         <p className="mt-2 font-sans text-sm text-bwt-ivory/70">{t("formSuccessText")}</p>
       </div>
     );
@@ -62,30 +78,61 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={submit} className="space-y-5">
-      <input
-        className={inputCls}
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder={t("formName")}
-        required
-      />
-      <input
-        className={inputCls}
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        placeholder={t("formPhone")}
-        type="tel"
-        inputMode="tel"
-        required
-      />
-      <textarea
-        className={`${inputCls} resize-none`}
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder={t("formMessage")}
-        rows={3}
-      />
-      {error && <p className="font-sans text-sm text-bwt-danger">{error}</p>}
+      <div>
+        <label htmlFor="contact-name" className="mb-1.5 block font-sans text-xs font-medium uppercase tracking-wider text-bwt-ivory/60">
+          {t("nameLabel")}
+        </label>
+        <input
+          id="contact-name"
+          name="name"
+          autoComplete="name"
+          className={inputCls}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder={t("formName")}
+          required
+          aria-invalid={Boolean(error) && !name.trim()}
+          aria-describedby={error ? "contact-error" : undefined}
+        />
+      </div>
+      <div>
+        <label htmlFor="contact-phone" className="mb-1.5 block font-sans text-xs font-medium uppercase tracking-wider text-bwt-ivory/60">
+          {t("phoneLabel")}
+        </label>
+        <input
+          id="contact-phone"
+          name="tel"
+          autoComplete="tel"
+          className={inputCls}
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder={t("formPhone")}
+          type="tel"
+          inputMode="tel"
+          required
+          aria-invalid={Boolean(error) && !phone.trim()}
+          aria-describedby={error ? "contact-error" : undefined}
+        />
+      </div>
+      <div>
+        <label htmlFor="contact-message" className="mb-1.5 block font-sans text-xs font-medium uppercase tracking-wider text-bwt-ivory/60">
+          {t("messageLabel")}
+        </label>
+        <textarea
+          id="contact-message"
+          name="message"
+          className={`${inputCls} resize-none`}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder={t("formMessage")}
+          rows={3}
+        />
+      </div>
+      {error && (
+        <p id="contact-error" role="alert" className="font-sans text-sm text-bwt-danger">
+          {error}
+        </p>
+      )}
       <button
         type="submit"
         disabled={sending}
@@ -93,7 +140,7 @@ export default function ContactForm() {
       >
         {sending ? (
           <>
-            <Loader2 className="h-5 w-5 animate-spin" /> …
+            <Loader2 className="h-5 w-5 animate-spin" /> {t("sending")}
           </>
         ) : (
           t("formSubmit")
