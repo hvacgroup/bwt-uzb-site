@@ -5,15 +5,18 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { STAGE_ANIMATIONS, STAGE_VIDEO_OVERLAYS } from "./StageAnimations";
 
 /* Photoreal macro loops generated for each stage (public/videos/stages/).
+   18.09.2026: all six re-shot as one series — a vertical filtration layer
+   right of centre, dirty water entering from the left, clean water on the
+   right (Higgsfield gpt_image_2_5 frame → Kling 3.0, start frame = end frame,
+   so every clip loops without a cut). 720×720, ~0.3–0.45 MB each.
    When a clip is missing or fails — or the user prefers reduced motion —
    the vector illustration takes over seamlessly. */
 const STAGE_VIDEOS: (string | null)[] = [
   "/videos/stages/stage-1-mesh.mp4",
   "/videos/stages/stage-2-carbon.mp4",
   "/videos/stages/stage-3-resin.mp4",
-  // 04 — the fibre footage was replaced by the vector scene: the owner wanted
-  // the mechanical stage's exact composition with pathogens instead of grit.
-  null,
+  // 04 — same composition as the mechanical stage, pathogens instead of grit.
+  "/videos/stages/stage-4-membrane.mp4",
   "/videos/stages/stage-5-magnesium.mp4",
   "/videos/stages/stage-6-glass.mp4",
 ];

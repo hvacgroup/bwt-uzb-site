@@ -946,12 +946,69 @@ function ResinOverlay() {
   );
 }
 
+/* ── Chip-only overlays for the 18.09.2026 clip series ──────────────────────
+   The new footage already shows the process (left: what is caught, centre:
+   the layer, right: clean water), so the vector particles that used to fall
+   top-to-bottom would contradict it. Each stage keeps only the caption chip:
+   the chemical symbol + plain-language name in the reader's language. */
+function MeshChip() {
+  const locale = useLocale();
+  return (
+    <svg viewBox={VB} className="h-full w-full">
+      <Chip symbol="Fe₂O₃ · SiO₂" name={locale === "uz" ? "ZANG · QUM" : "РЖАВЧИНА · ПЕСОК"} w={192} />
+    </svg>
+  );
+}
+function CarbonChip() {
+  const locale = useLocale();
+  return (
+    <svg viewBox={VB} className="h-full w-full">
+      <Chip symbol="Cl₂" name={locale === "uz" ? "XLOR" : "ХЛОР"} w={96} />
+    </svg>
+  );
+}
+function ResinChip() {
+  const locale = useLocale();
+  return (
+    <svg viewBox={VB} className="h-full w-full">
+      <Chip symbol="Ca²⁺ · Mg²⁺" name={locale === "uz" ? "QATTIQLIK" : "ЖЁСТКОСТЬ"} w={152} />
+    </svg>
+  );
+}
+function MembraneChip() {
+  const locale = useLocale();
+  return (
+    <svg viewBox={VB} className="h-full w-full">
+      <Chip symbol="0.01 µm" name={locale === "uz" ? "BAKTERIYALAR" : "БАКТЕРИИ"} w={160} />
+    </svg>
+  );
+}
+function MgChip() {
+  const locale = useLocale();
+  return (
+    <svg viewBox={VB} className="h-full w-full">
+      <Chip symbol="Mg²⁺" name={locale === "uz" ? "MAGNIY" : "МАГНИЙ"} w={104} />
+    </svg>
+  );
+}
+
 /** Overlay per stage index; null = video plays clean. */
 export const STAGE_VIDEO_OVERLAYS: (null | (() => React.ReactElement))[] = [
+  MeshChip,
+  CarbonChip,
+  ResinChip,
+  MembraneChip,
+  MgChip,
+  null, // 06 — the polished water speaks for itself
+];
+
+/** The previous overlays, drawn for the old top-to-bottom clips. Kept for
+    reference; wire them back in only with footage that flows downward. */
+export const LEGACY_VIDEO_OVERLAYS: (null | (() => React.ReactElement))[] = [
   null,
   CarbonOverlay,
   ResinOverlay,
-  null, // stage 04 runs as pure vector — see MembraneStage
+  MembraneOverlay,
   MgIonsOverlay,
   null,
 ];
