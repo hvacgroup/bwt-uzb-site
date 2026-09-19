@@ -6,11 +6,13 @@ import { useTranslations } from "next-intl";
 import CountUp from "./anim/CountUp";
 
 /* Photos of the buildings, keyed by the object name in messages/*.json.
-   Piramit, NRG Voha and NRG Mirzo Ulugbek have no shot yet — those tiles
-   fall back to a navy panel with the same geometry, so the grid never
-   breaks rhythm. */
+   Every object has a shot; an unmatched name still falls back to a navy
+   panel with the same geometry, so the grid never breaks rhythm. */
 const PHOTOS: Record<string, string> = {
   NestOne: "/images/residences/nestone.webp",
+  Piramit: "/images/residences/piramit.webp",
+  "NRG Voha": "/images/residences/nrg-voha.webp",
+  "NRG Mirzo Ulugbek": "/images/residences/nrg-mirzo-ulugbek.webp",
   "NRG Hayot": "/images/residences/nrg-hayot.webp",
   "Mirabad Avenue": "/images/residences/mirabad-avenue.webp",
   "Modera Towers": "/images/residences/modera-towers.webp",
