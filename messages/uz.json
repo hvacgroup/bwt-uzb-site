@@ -41,6 +41,7 @@
     "home": "Bosh sahifa",
     "catalog": "Katalog",
     "services": "Xizmatlar",
+    "blog": "Blog",
     "about": "Biz haqimizda",
     "contacts": "Aloqa",
     "request": "Ariza",
@@ -906,5 +907,26 @@
       "ogTitle": "BWT Uzbekistan — uyingiz uchun toza suv",
       "ogDescription": "Germaniya BWT filtrlari. 90 daqiqada o'rnatish. 3 yil kafolat."
     }
+  },
+  "blog": {
+    "meta": {
+      "title": "BWT Uzbekistan blogi — uydagi suv haqida maqolalar",
+      "description": "Suv qattiqligi, filtrlar, teskari osmos va bolalar uchun suv. Qisqa, manbalari bilan va qoʻrqitmasdan."
+    },
+    "eyebrow": "Blog",
+    "title": "Uyingizdagi suv haqida maqolalar",
+    "subtitle": "Bizga eng koʻp beriladigan savollarni tahlil qilamiz. Har bir maqolada manba bor, uni tekshirib koʻrishingiz mumkin.",
+    "readMore": "Oʻqish",
+    "minRead": "daqiqa oʻqish",
+    "published": "Chop etilgan",
+    "sources": "Manbalar",
+    "telegram": "Bu mavzu Telegram kanalimizda karusel boʻlib chiqqan",
+    "telegramLink": "Telegramda ochish",
+    "ctaTitle": "Uyingizdagi suv qanday ekanini bilmaysizmi?",
+    "ctaBody": "Ariza qoldiring. Suv tahlili boʻyicha yordam beramiz va natijasiga qarab tizim tanlaymiz.",
+    "ctaButton": "Ariza qoldirish",
+    "related": "Boshqa maqolalar",
+    "home": "Bosh sahifa",
+    "back": "Barcha maqolalar"
   }
 }

@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { fetchProducts } from "@/lib/api";
+import { POSTS } from "@/lib/blog";
 
 const SITE = "https://bwt-uzb.uz";
 
 // Locale-agnostic marketing routes. RU (default) is unprefixed; UZ under /uz/*.
-const PATHS = ["", "/about", "/services", "/contacts", "/request", "/catalog", "/promo"];
+const PATHS = ["", "/about", "/services", "/contacts", "/request", "/catalog", "/promo", "/blog"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -15,6 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await fetchProducts();
   const paths = [
     ...PATHS,
+    ...POSTS.map((p) => `/blog/${p.slug}`),
     ...products.filter((p) => p.sku).map((p) => `/catalog/${p.sku}`),
   ];
 
@@ -22,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const ru = `${SITE}${path || "/"}`;
     const uz = `${SITE}/uz${path}`;
     const languages = { ru, uz, "x-default": ru };
-    const priority = path === "" ? 1 : path.startsWith("/catalog/") ? 0.7 : 0.8;
+    const priority = path === "" ? 1 : path.startsWith("/catalog/") || path.startsWith("/blog/") ? 0.7 : 0.8;
 
     entries.push({ url: ru, lastModified: now, changeFrequency: "monthly", priority, alternates: { languages } });
     entries.push({ url: uz, lastModified: now, changeFrequency: "monthly", priority, alternates: { languages } });

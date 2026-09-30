@@ -42,6 +42,7 @@ const FOOTER: Record<string, FooterStrings> = {
         links: [
           { label: "О бренде", href: "/about" },
           { label: "Технология", href: "/#technology" },
+          { label: "Блог", href: "/blog" },
           { label: "Контакты", href: "/contacts" },
           { label: "Оставить заявку", href: "/request" },
         ],
@@ -80,6 +81,7 @@ const FOOTER: Record<string, FooterStrings> = {
         links: [
           { label: "Brend haqida", href: "/about" },
           { label: "Texnologiya", href: "/#technology" },
+          { label: "Blog", href: "/blog" },
           { label: "Aloqa", href: "/contacts" },
           { label: "Ariza qoldirish", href: "/request" },
         ],
