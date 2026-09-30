@@ -18,10 +18,10 @@ export const BRAND = {
   instagram:   "https://www.instagram.com/bwt_uzb/",
   instagramHandle: "@bwt_uzb",
   address: {
-    ru: "г. Ташкент, Юнусабадский р-н, ул. Хушнаво, 4 проезд, д. 2",
-    uz: "Toshkent sh., Yunusobod tumani, Xushnavo ko'chasi, 4-tor ko'cha, 2-uy",
+    ru: "г. Ташкент, Малая кольцевая дорога, 58",
+    uz: "Toshkent sh., Kichik xalqa yoʻli, 58",
   },
-  addressShort:{ ru: "Ташкент, Юнусабадский район", uz: "Toshkent, Yunusobod tumani" },
+  addressShort:{ ru: "Ташкент, Малая кольцевая дорога, 58", uz: "Toshkent, Kichik xalqa yoʻli, 58" },
   workingHours: {
     ru: { weekdays: "Понедельник — Суббота: 9:00 – 18:00", sunday: "Воскресенье — выходной" },
     uz: { weekdays: "Dushanba — Shanba: 9:00 – 18:00", sunday: "Yakshanba — dam olish kuni" },

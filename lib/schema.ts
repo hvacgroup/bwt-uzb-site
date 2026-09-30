@@ -34,11 +34,8 @@ export function organizationSchema(locale: string) {
     foundingDate: "2016",
     address: {
       "@type": "PostalAddress",
-      streetAddress: uz
-        ? "Xushnavo ko'chasi, 4-tor ko'cha, 2-uy"
-        : "ул. Хушнаво, 4 проезд, д. 2",
+      streetAddress: uz ? "Kichik xalqa yoʻli, 58" : "Малая кольцевая дорога, 58",
       addressLocality: uz ? "Toshkent" : "Ташкент",
-      addressRegion: uz ? "Yunusobod tumani" : "Юнусабадский район",
       addressCountry: "UZ",
     },
     geo: {

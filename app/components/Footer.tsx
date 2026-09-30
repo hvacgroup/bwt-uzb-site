@@ -161,8 +161,10 @@ export default function Footer({ locale }: { locale: string }) {
                   <Camera className="mt-0.5 h-4 w-4 shrink-0 text-bwt-gold" /> {BRAND.instagramHandle}
                 </a>
               </li>
-              <li className="flex items-start gap-2 text-bwt-ivory/60">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-bwt-gold" /> {BRAND.addressShort[locale === "uz" ? "uz" : "ru"]}
+              <li>
+                <a href={BRAND.geo.googleLink} target="_blank" rel="noopener noreferrer" className="flex items-start gap-2 text-bwt-ivory/70 transition-colors hover:text-bwt-ivory">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-bwt-gold" /> {BRAND.addressShort[locale === "uz" ? "uz" : "ru"]}
+                </a>
               </li>
             </ul>
           </div>

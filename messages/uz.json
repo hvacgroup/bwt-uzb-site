@@ -330,10 +330,10 @@
     "eyebrow": "O'zbekistonda o'rnatilgan",
     "countSuffix": "butun mamlakat bo'ylab premium obyekt",
     "listTitle": "BWT o'rnatilgan premium TJlar",
-    "homes": "+ butun O'zbekiston bo'ylab 100 xususiy uy",
+    "homes": "+ butun O'zbekiston bo'ylab 1000 xususiy uy",
     "titleA": "16 ta premium uy-joy majmuasi allaqachon tanladi",
     "titleAccent": "BWT",
-    "lead": "+ O'zbekiston bo'ylab 100 dan ortiq xususiy uylar va ofislar. Har bir obyekt — laboratoriya tahlilidan keyin individual tizim tanlash.",
+    "lead": "+ O'zbekiston bo'ylab 1000 dan ortiq xususiy uylar va ofislar. Har bir obyekt — laboratoriya tahlilidan keyin individual tizim tanlash.",
     "stats": [
       {
         "num": "1200",
@@ -357,7 +357,7 @@
       }
     ],
     "objectsTitle": "BWT o'rnatilgan premium uy-joy majmualari",
-    "objectsMeta": "+ 100 ta xususiy uy",
+    "objectsMeta": "+ 1000 ta xususiy uy",
     "objects": [
       {
         "name": "NestOne",
@@ -424,7 +424,7 @@
         "cat": "Premium · Toshkent"
       }
     ],
-    "moreName": "100+ xususiy uylar",
+    "moreName": "1000+ xususiy uylar",
     "moreCat": "O'zbekiston bo'ylab"
   },
   "finalCta": {
@@ -652,8 +652,8 @@
     "mapYandex": "Yandex xaritalarida ochish",
     "mapGoogle": "Google Maps'da ochish",
     "meta": {
-      "title": "BWT Uzbekistan aloqa — Toshkent, Yunusobod",
-      "description": "O'zbekistondagi BWT rasmiy distribyutorining manzili, telefoni va ish vaqti. Toshkent, Yunusobod tumani, Xushnavo ko'chasi."
+      "title": "BWT Uzbekistan aloqa — Toshkent, Kichik xalqa yoʻli, 58",
+      "description": "O'zbekistondagi BWT rasmiy distribyutorining manzili, telefoni va ish vaqti. Toshkent, Kichik xalqa yoʻli, 58."
     },
     "nameLabel": "Ismingiz",
     "phoneLabel": "Telefon",
