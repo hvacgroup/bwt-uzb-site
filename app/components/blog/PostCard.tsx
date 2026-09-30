@@ -1,4 +1,4 @@
-import Image from "next/image";
+import BlogCover from "./BlogCover";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { postText, type Post } from "@/lib/blog";
@@ -27,12 +27,11 @@ export default function PostCard({
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-card border border-bwt-silver/60 bg-white shadow-soft transition-shadow hover:shadow-card">
       <div className="relative aspect-[40/21] overflow-hidden bg-bwt-cream">
-        <Image
+        <BlogCover
           src={post.cover}
           alt={t.coverAlt}
-          fill
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className="transition-transform duration-500 group-hover:scale-[1.03]"
         />
       </div>
       <div className="flex flex-1 flex-col p-6">

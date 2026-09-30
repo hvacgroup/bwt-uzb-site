@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { fetchProducts } from "@/lib/api";
-import { POSTS } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog";
 
 const SITE = "https://bwt-uzb.uz";
 
@@ -16,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await fetchProducts();
   const paths = [
     ...PATHS,
-    ...POSTS.map((p) => `/blog/${p.slug}`),
+    ...(await getAllPosts()).map((p) => `/blog/${p.slug}`),
     ...products.filter((p) => p.sku).map((p) => `/catalog/${p.sku}`),
   ];
 

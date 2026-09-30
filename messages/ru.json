@@ -927,5 +927,15 @@
     "related": "Ещё статьи",
     "home": "Главная",
     "back": "Все статьи"
+  },
+  "officeMap": {
+    "eyebrow": "Шоурум",
+    "title": "Как нас найти",
+    "address": "Адрес",
+    "hours": "Часы работы",
+    "phone": "Телефон",
+    "google": "Открыть в Google Maps",
+    "yandex": "Открыть в Яндекс Картах",
+    "mapTitle": "Шоурум BWT Uzbekistan на карте"
   }
 }

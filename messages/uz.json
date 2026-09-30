@@ -928,5 +928,15 @@
     "related": "Boshqa maqolalar",
     "home": "Bosh sahifa",
     "back": "Barcha maqolalar"
+  },
+  "officeMap": {
+    "eyebrow": "Shourum",
+    "title": "Bizni qanday topasiz",
+    "address": "Manzil",
+    "hours": "Ish vaqti",
+    "phone": "Telefon",
+    "google": "Google Maps'da ochish",
+    "yandex": "Yandex xaritalarida ochish",
+    "mapTitle": "BWT Uzbekistan shourumi xaritada"
   }
 }

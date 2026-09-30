@@ -15,6 +15,7 @@ import Reviews from "@/app/components/Reviews";
 import PremiumResidences from "@/app/components/PremiumResidences";
 import ChangeTheWorld from "@/app/components/ChangeTheWorld";
 import FinalCTA from "@/app/components/FinalCTA";
+import OfficeMap from "@/app/components/OfficeMap";
 
 /* The home page shipped without metadata, so /ru and /uz were two indexable
    URLs with the same Russian title and no link between them. */
@@ -69,6 +70,8 @@ export default function Home() {
       <ChangeTheWorld />
       {/* 10 — Final CTA / Lead form */}
       <FinalCTA />
+      {/* 11 — Как нас найти: адрес и карта */}
+      <OfficeMap />
     </>
   );
 }

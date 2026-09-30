@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { altMeta } from "@/lib/seo";
-import { sortedPosts } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog";
 import PostCard from "@/app/components/blog/PostCard";
+
+export const revalidate = 600;
 
 export async function generateMetadata({
   params,
@@ -20,7 +22,7 @@ export async function generateMetadata({
       description: t("description"),
       type: "website",
       locale: locale === "uz" ? "uz_UZ" : "ru_UZ",
-      images: [{ url: sortedPosts()[0].cover, width: 1600, height: 840 }],
+      images: [{ url: "/images/blog/zhestkaya-voda-priznaki.webp", width: 1600, height: 840 }],
     },
   };
 }
@@ -33,7 +35,7 @@ export default async function BlogIndex({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "blog" });
-  const posts = sortedPosts();
+  const posts = await getAllPosts();
 
   return (
     <>

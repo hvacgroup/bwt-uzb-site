@@ -1,29 +1,31 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowLeft, ArrowRight, Send } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { altMeta } from "@/lib/seo";
-import { POSTS, getPost, postText, sortedPosts } from "@/lib/blog";
+import { getAllPosts, getPost, postText } from "@/lib/blog";
+import BlogCover from "@/app/components/blog/BlogCover";
 import { BRAND } from "@/lib/config";
 import RichText from "@/app/components/blog/RichText";
 import PostCard, { formatDate } from "@/app/components/blog/PostCard";
 
 const SITE = "https://bwt-uzb.uz";
 
-// Only the slugs listed in lib/blog.ts exist; anything else is a 404.
-export const dynamicParams = false;
+// Articles the scheduled task adds to Supabase render on first request and are
+// then cached; an unknown slug is a 404 via notFound() below.
+export const dynamicParams = true;
+export const revalidate = 600;
 
-export function generateStaticParams() {
-  return POSTS.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  return (await getAllPosts()).map((p) => ({ slug: p.slug }));
 }
 
 type Params = Promise<{ locale: string; slug: string }>;
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const post = getPost(slug);
+  const post = await getPost(slug);
   if (!post) return {};
   const t = postText(post, locale);
   return {
@@ -37,7 +39,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       publishedTime: post.date,
       locale: locale === "uz" ? "uz_UZ" : "ru_UZ",
       siteName: BRAND.name,
-      images: [{ url: post.cover, width: 1600, height: 840, alt: t.coverAlt }],
+      images: post.cover
+        ? [{ url: post.cover, width: 1600, height: 840, alt: t.coverAlt }]
+        : [{ url: "/images/bwt-logo-1200w.png", width: 1200, height: 630, alt: "BWT Uzbekistan" }],
     },
     twitter: { card: "summary_large_image" },
   };
@@ -45,7 +49,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 export default async function BlogPost({ params }: { params: Params }) {
   const { locale, slug } = await params;
-  const post = getPost(slug);
+  const post = await getPost(slug);
   if (!post) notFound();
   setRequestLocale(locale);
 
@@ -54,7 +58,7 @@ export default async function BlogPost({ params }: { params: Params }) {
   const uz = locale === "uz";
   const base = uz ? `${SITE}/uz` : SITE;
   const url = `${base}/blog/${slug}`;
-  const others = sortedPosts().filter((p) => p.slug !== slug).slice(0, 3);
+  const others = (await getAllPosts()).filter((p) => p.slug !== slug).slice(0, 3);
 
   // Article + breadcrumbs for rich results. Everything here is also visible on the page.
   const jsonLd = [
@@ -63,7 +67,7 @@ export default async function BlogPost({ params }: { params: Params }) {
       "@type": "BlogPosting",
       headline: text.title,
       description: text.description,
-      image: `${SITE}${post.cover}`,
+      image: `${SITE}${post.cover ?? "/images/bwt-logo-1200w.png"}`,
       datePublished: post.date,
       dateModified: post.date,
       inLanguage: uz ? "uz-UZ" : "ru-UZ",
@@ -121,14 +125,7 @@ export default async function BlogPost({ params }: { params: Params }) {
       <div className="bg-white">
         <div className="mx-auto max-w-[880px] px-6 pt-8 lg:pt-12">
           <div className="relative aspect-[40/21] overflow-hidden rounded-card shadow-card">
-            <Image
-              src={post.cover}
-              alt={text.coverAlt}
-              fill
-              priority
-              sizes="(max-width: 928px) 100vw, 880px"
-              className="object-cover"
-            />
+            <BlogCover src={post.cover} alt={text.coverAlt} priority sizes="(max-width: 928px) 100vw, 880px" />
           </div>
         </div>
 
